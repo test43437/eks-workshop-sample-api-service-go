@@ -28,7 +28,17 @@ pipeline {
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
-                //implement Kubernetes deployment here
+                kubernetesDeploy(kubeconfigId: 'eks-kubeconfig',
+
+                 configs: '**/hello-k8s.yml',
+                 enableConfigSubstitution: false,
+        
+                 // secretNamespace: '<secret-namespace>',
+                 // secretName: '<secret-name>',
+                 dockerCredentials: [
+                        [credentialsId: 'docker_hub_login'],
+                 ]
+)
             }
         }
     }
