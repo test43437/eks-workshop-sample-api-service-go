@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         
-        DOCKER_IMAGE_NAME = "rohan4494/api-service-go"
+        DOCKER_IMAGE_NAME = "ashokshingade24/api-service-go"
     }
     stages {
         stage('Build Docker Image') {
@@ -28,13 +28,13 @@ pipeline {
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
-                kubernetesDeploy(kubeconfigId: 'eg-testing-eks-cluster',
+                kubernetesDeploy(kubeconfigId: 'eks-kubeconfig',
 
                  configs: '**/hello-k8s.yml',
                  enableConfigSubstitution: false,
         
-                 // secretNamespace: '<secret-namespace>',
-                 // secretName: '<secret-name>',
+                 secretNamespace: 'default',
+                 secretName: 'hello-k8s',
                  dockerCredentials: [
                         [credentialsId: 'docker_hub_login'],
                  ]
