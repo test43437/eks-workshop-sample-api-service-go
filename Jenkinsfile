@@ -31,6 +31,7 @@ pipeline {
                 kubernetesDeploy(kubeconfigId: 'eks-kubeconfig',
 
                  configs: '**/hello-k8s.yml',
+                 configs: '**/nginx.yml',                
                  enableConfigSubstitution: false,
         
                  secretNamespace: 'default',
