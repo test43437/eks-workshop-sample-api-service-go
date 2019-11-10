@@ -28,17 +28,10 @@ pipeline {
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
-                kubernetesDeploy(kubeconfigId: 'eks-kubeconfig',
+                sh 'helm install stable/jenkins'
+    }
+}
 
-                 configs: '**/*.yml',              
-                 enableConfigSubstitution: false,
-        
-                 secretNamespace: 'default',
-                 secretName: 'hello-k8s',
-                 dockerCredentials: [
-                        [credentialsId: 'docker_hub_login'],
-                 ]
-)
             }
         }
     }
