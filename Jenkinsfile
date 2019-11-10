@@ -1,8 +1,8 @@
 pipeline {
-    agent any
+    agent { label 'helm-deploy-slave' }
     environment {
         
-        DOCKER_IMAGE_NAME = "ashokshingade24/api-service-go"
+        DOCKER_IMAGE_NAME = "rohan4494/hello"
     }
     stages {
         stage('Build Docker Image') {
