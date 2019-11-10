@@ -29,9 +29,6 @@ pipeline {
                 input 'Deploy to Production?'
                 milestone(1)
                 sh 'helm install stable/jenkins'
-    }
-}
-
             }
         }
     }
